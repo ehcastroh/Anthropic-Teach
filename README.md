@@ -102,7 +102,7 @@ uv sync --frozen
 
 On NixOS, or anywhere Nix is installed, `nix develop` does the same.
 
-**3. Set your API key** (console.anthropic.com). Skip this if you only use dry-run mode.
+**3. Set your API key** (console.anthropic.com). Skip this if you only use dry-run mode (below).
 
 | macOS / Linux (bash, zsh) | Windows (PowerShell) |
 |---|---|
@@ -128,7 +128,7 @@ every notebook still runs top to bottom.
 |---|---|
 | `export CLAUDE_CODE_DRY_RUN=1` | `$env:CLAUDE_CODE_DRY_RUN = "1"` |
 
-Set it before `uv run jupyter lab`. Without it, each notebook makes real calls. The cover cell
+A placeholder key is filled in automatically if none is set. Set the flag before `uv run jupyter lab`. Without it, each notebook makes real calls. The cover cell
 of each lesson lists its cost: a few cents per lesson on Haiku, plus about $0.12 if you also
 run the live batch.
 
