@@ -22,7 +22,7 @@ from claude_code.api.batches import BatchRequest  # noqa: E402
 
 
 def load_requests(path: Path) -> list[BatchRequest]:
-    rows = json.loads(path.read_text())
+    rows = json.loads(path.read_text(encoding="utf-8"))
     return [
         BatchRequest(
             custom_id=row["custom_id"],
@@ -63,7 +63,7 @@ def main(argv: list[str] | None = None) -> int:
         handle = client.poll_until_complete(
             handle.id, timeout_seconds=args.timeout, poll_interval_seconds=args.poll_interval
         )
-        with args.output.open("w") as out:
+        with args.output.open("w", encoding="utf-8") as out:
             for item in client.results(handle.id):
                 row = {"custom_id": item["custom_id"], "type": item["result"].type}
                 if item["result"].type == "succeeded":

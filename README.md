@@ -79,45 +79,88 @@ pyproject.toml  dependencies, pinned by uv.lock
 
 ## Setup
 
-Requirements: Python 3.12 and [uv](https://docs.astral.sh/uv/). On NixOS or with Nix
-installed, `nix develop` provides both and syncs the environment for you.
+Requirements: [uv](https://docs.astral.sh/uv/) and git. uv downloads Python 3.12 itself, so
+you do not need to install Python first. Works on macOS, Linux and Windows 11; CI runs the
+checks below on all three on every push.
+
+**1. Install uv**
+
+| macOS / Linux | Windows (PowerShell) |
+|---|---|
+| `curl -LsSf https://astral.sh/uv/install.sh \| sh` | `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 \| iex"` |
+
+Homebrew (`brew install uv`) and WinGet (`winget install astral-sh.uv`) also work. Open a new
+terminal afterwards.
+
+**2. Clone and install**
 
 ```bash
 git clone https://github.com/ehcastroh/Anthropic-Teach.git
 cd Anthropic-Teach
+uv sync --frozen
+```
 
-uv sync --frozen          # or: nix develop
+On NixOS, or anywhere Nix is installed, `nix develop` does the same.
+
+**3. Set your API key** (console.anthropic.com). Skip this if you only use dry-run mode.
+
+| macOS / Linux (bash, zsh) | Windows (PowerShell) |
+|---|---|
+| `export ANTHROPIC_API_KEY="sk-ant-..."` | `$env:ANTHROPIC_API_KEY = "sk-ant-..."` |
+
+That sets it for the current terminal only. To keep it, add the line to your shell profile
+(macOS/Linux) or run `setx ANTHROPIC_API_KEY "sk-ant-..."` and reopen the terminal (Windows).
+The key always comes from your environment, never from a project file, so there is no `.env`
+to create. Do not paste it into a notebook cell.
+
+**4. Start Jupyter**
+
+```bash
 uv run jupyter lab
 ```
 
-The live API calls need an Anthropic API key (console.anthropic.com) exported in your shell
-profile as `ANTHROPIC_API_KEY`. The key comes from your shell environment, never from a
-project file, so there is no `.env` to create. Do not paste it into a notebook cell.
-
 ### Dry-run mode
 
-Set `CLAUDE_CODE_DRY_RUN=1` to skip every live API call. No key and no spend are needed, and every
-notebook still runs top to bottom.
+Set `CLAUDE_CODE_DRY_RUN=1` to skip every live API call. No key and no spend are needed, and
+every notebook still runs top to bottom.
 
-```bash
-CLAUDE_CODE_DRY_RUN=1 uv run jupyter lab
-```
+| macOS / Linux | Windows (PowerShell) |
+|---|---|
+| `export CLAUDE_CODE_DRY_RUN=1` | `$env:CLAUDE_CODE_DRY_RUN = "1"` |
 
-Without it, each notebook makes real calls. The cover cell of each lesson lists its cost:
-a few cents per lesson on Haiku, plus about $0.12 if you also run the live batch.
+Set it before `uv run jupyter lab`. Without it, each notebook makes real calls. The cover cell
+of each lesson lists its cost: a few cents per lesson on Haiku, plus about $0.12 if you also
+run the live batch.
 
 ## Verify everything runs
 
-```bash
-# 1. IRL example tests - offline, free (33 pass, 1 live-API test skipped)
-uv run pytest
+IRL example tests, offline and free (33 pass, 1 live-API test skipped). Same on every OS:
 
-# 2. Lessons and worked solutions - dry-run, no API key needed
+```bash
+uv run pytest
+```
+
+Lessons and worked solutions, in dry-run mode, no API key needed:
+
+```bash
+# macOS / Linux
 export CLAUDE_CODE_DRY_RUN=1
 for nb in lessons/*.ipynb homework/solutions/*.ipynb; do
   uv run jupyter nbconvert --to notebook --execute --output-dir /tmp/nbcheck "$nb"
 done
 ```
 
+```powershell
+# Windows (PowerShell)
+$env:CLAUDE_CODE_DRY_RUN = "1"
+foreach ($nb in (Get-ChildItem lessons\*.ipynb, homework\solutions\*.ipynb)) {
+  uv run jupyter nbconvert --to notebook --execute --output-dir $env:TEMP\nbcheck $nb.FullName
+}
+```
+
 The example tests can hit the live API on demand with `uv run pytest --online`, which is
 billable.
+
+The `.md` walkthroughs inside `irl_examples/` show bash commands (`export`, `python3`,
+`PYTHONPATH=...`). On Windows, use the PowerShell forms above, run Python with `uv run python`,
+and set `PYTHONPATH` with `$env:PYTHONPATH = "..."` first.
