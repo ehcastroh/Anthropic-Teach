@@ -69,8 +69,7 @@ Tests run offline against mocks by default and cost nothing.
 lessons/        3 lesson notebooks
 homework/       3 homework notebooks; solutions/ holds the worked answers
 irl_examples/   one folder per lesson, each with runnable example projects and tests
-claude_code/          small importable package the notebooks and examples use
-                (Python import name; hyphens are not valid in imports, so Claude-Code becomes claude_code)
+claude_code/    importable package the notebooks use (Claude-Code as a valid import name)
 scripts/        2 CLI scripts that lesson 01 invokes
 assets/         input data for homework 01
 flake.nix       optional Nix dev shell (Python 3.12, uv, ruff)
