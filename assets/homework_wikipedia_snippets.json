@@ -1,0 +1,52 @@
+[
+  {
+    "id": "snip-01",
+    "title": "Photosynthesis",
+    "text": "Photosynthesis is a process used by plants, algae and some bacteria to convert light energy into chemical energy stored in glucose, releasing oxygen as a by-product."
+  },
+  {
+    "id": "snip-02",
+    "title": "Printing press",
+    "text": "The movable-type printing press, introduced to Europe by Johannes Gutenberg around 1440, made books cheap enough to spread literacy and ideas across the continent."
+  },
+  {
+    "id": "snip-03",
+    "title": "Tide",
+    "text": "Tides are the rise and fall of sea levels caused by the combined gravitational pull of the Moon and the Sun and the rotation of the Earth."
+  },
+  {
+    "id": "snip-04",
+    "title": "Binary search",
+    "text": "Binary search finds a target in a sorted array by repeatedly halving the search interval, taking O(log n) comparisons."
+  },
+  {
+    "id": "snip-05",
+    "title": "Vaccination",
+    "text": "Vaccination trains the immune system to recognise a pathogen by exposing it to a harmless form of the agent, so later infection is milder or prevented."
+  },
+  {
+    "id": "snip-06",
+    "title": "Great Wall of China",
+    "text": "The Great Wall of China is a series of fortifications built across northern China over many centuries to protect against invasions."
+  },
+  {
+    "id": "snip-07",
+    "title": "Plate tectonics",
+    "text": "Plate tectonics describes the slow movement of Earth's lithospheric plates, which causes earthquakes, volcanoes and the formation of mountain ranges."
+  },
+  {
+    "id": "snip-08",
+    "title": "Coffee",
+    "text": "Coffee is a brewed drink prepared from roasted coffee beans, the seeds of berries from Coffea plants, and is one of the most widely consumed beverages in the world."
+  },
+  {
+    "id": "snip-09",
+    "title": "Transistor",
+    "text": "The transistor, invented at Bell Labs in 1947, is a semiconductor device that amplifies or switches electronic signals and underpins all modern computing."
+  },
+  {
+    "id": "snip-10",
+    "title": "Monarch butterfly",
+    "text": "Monarch butterflies undertake a multi-generational migration of thousands of kilometres between North America and overwintering sites in Mexico."
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "name": "get_weather",
+  "description": "Return the current weather for a city. Use this when the user asks about weather, temperature, or conditions. Do NOT use this for historical weather data or forecasts beyond today. Example: {\"location\": \"San Francisco, CA\"}",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "location": {
+        "type": "string",
+        "description": "City and state or country, e.g. 'San Francisco, CA'.",
+        "minLength": 2,
+        "maxLength": 100
+      }
+    },
+    "required": ["location"]
+  }
+}

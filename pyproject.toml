@@ -1,0 +1,86 @@
+[project]
+name = "anthropic-teach"
+version = "0.1.0"
+description = "Three hands-on lessons on building with the Claude API: API mechanics, software engineering foundations, application design"
+# Must stay in step with pkgs.python312 in flake.nix and .python-version.
+# Do not widen this without re-pinning the flake - a floor below the flake's
+# interpreter lets uv silently resolve against a Python nobody actually runs.
+requires-python = ">=3.12"
+readme = "README.md"
+
+# Runtime deps. Version pins verified against PyPI on 2026-09-02.
+dependencies = [
+    "anthropic>=1.3.0",           # Verified against pypi.org/pypi/anthropic/json on 2026-09-02
+    "pydantic>=2.0",
+    "jsonschema>=4.20.0",
+]
+
+# PEP 735 group, not [project.optional-dependencies]: `uv sync` installs
+# dependency-groups by default, so the devShell's .venv actually gets pytest
+# and the Jupyter stack. As an extra, none of this was ever installed.
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "jupyter>=1.0.0",
+    "jupyterlab>=4.0.0",
+    "nbconvert>=7.0.0",
+    "ipykernel>=6.28.0",
+    # ruff is NOT here on purpose: it is a binary tool provided by flake.nix,
+    # not a library the project imports. The PyPI wheel cannot execute on NixOS.
+    # The [tool.ruff] config below still applies - it is read by whichever ruff runs.
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["ccdvf"]
+
+[tool.pytest.ini_options]
+testpaths = ["irl_examples"]
+markers = [
+    "integration: tests that hit the paid Anthropic API (opt-in with -m integration)",
+]
+addopts = "-m 'not integration' --tb=short --strict-markers"
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes
+    "W",   # pycodestyle warnings
+    "I",   # isort
+    "B",   # bugbear
+    "UP",  # pyupgrade
+    "PL",  # pylint
+]
+ignore = [
+    "PLR0913",  # too many arguments - notebooks show real API calls with many params
+    "E501",     # line too long - allow for imports and URLs
+]
+
+[tool.ruff.lint.per-file-ignores]
+"irl_examples/*" = ["PLR2004"]  # magic numbers in tests are fine
+"scripts/*" = ["T201"]   # print() in scripts is fine
+
+# Notebooks are linted, but three rules encode assumptions that are true of a
+# module and false of a teaching notebook. Ruff analyses a notebook as if the
+# cells were one concatenated file; the cells are actually meant to be read and
+# run one at a time. These three are suppressed for that reason alone - every
+# other rule still applies to notebooks, and the real defects they found
+# (invalid escapes, shadowed names, unused variables) were fixed, not silenced.
+"*.ipynb" = [
+    "E402",  # imports after code: each Part re-imports so its cells run standalone
+    "F401",  # "unused" import: used in a later cell, which ruff sees separately
+    "I001",  # import sorting: cell-local import blocks are grouped by teaching topic
+    # A lesson comparing `if score > 3` is showing the reader the threshold.
+    # Hoisting it into a named constant moves the number away from the sentence
+    # that explains it - the same reasoning already applied to tests/ above.
+    "PLR2004",
+]
