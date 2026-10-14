@@ -1,4 +1,4 @@
-"""ccdvf.prompts.structured_output: validator for Claude JSON text output."""
+"""claude_code.prompts.structured_output: validator for Claude JSON text output."""
 from __future__ import annotations
 
 import json
@@ -10,7 +10,7 @@ class StructuredOutputValidator:
     """Parse and validate Claude's text response as structured JSON.
 
     Two structured-output strategies exist: prompt-guidance (this class) and
-    tool_choice=specific (see ccdvf.tools.tool_choice). Use this class when
+    tool_choice=specific (see claude_code.tools.tool_choice). Use this class when
     you want to parse text output; use tool_choice_specific when you need
     a guaranteed schema enforced by the API.
 

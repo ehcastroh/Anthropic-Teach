@@ -1,9 +1,9 @@
-"""ccdvf.api.budget: per-session cost tracking and cap enforcement."""
+"""claude_code.api.budget: per-session cost tracking and cap enforcement."""
 from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from ccdvf.config.model_registry import cost_for_call
+from claude_code.config.model_registry import cost_for_call
 
 
 @dataclass
@@ -12,7 +12,7 @@ class BudgetTracker:
 
     Preconditions:
         - cap_usd > 0 when provided.
-        - model_key must be a key in ccdvf.config.model_registry.MODELS.
+        - model_key must be a key in claude_code.config.model_registry.MODELS.
     Postconditions:
         - would_exceed returns True iff adding projected_* tokens would push spent_usd over cap_usd.
         - record accumulates costs exactly once per successful call.

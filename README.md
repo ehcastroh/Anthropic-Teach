@@ -10,7 +10,7 @@ notebook with a paired homework and a real-world example project:
 | 03 | Claude application design | `lessons/03_claude_application_design.ipynb` | `homework/03_claude_application_design_homework.ipynb` | `irl_examples/03_claude_application_design/` |
 
 Every code example moves through three tiers: an inline introduction, a factored version
-using the small `ccdvf/` package, and a production-shaped version that uses a script or a
+using the small `claude_code/` package, and a production-shaped version that uses a script or a
 full module. Worked homework answers are in `homework/solutions/`.
 
 ---
@@ -19,20 +19,20 @@ full module. Worked homework answers are in `homework/solutions/`.
 
 **01 - Claude API mechanics.** Sync and streaming Messages API calls, content blocks and
 `stop_reason`, tool use, vision, extended thinking, `count_tokens`, and the Message Batches
-API with the realtime-vs-batch decision. Companion modules: `ccdvf.api`, `ccdvf.tools`,
-`ccdvf.config.model_registry`. Companion scripts: `scripts/streaming_client_smoke_test.py`,
+API with the realtime-vs-batch decision. Companion modules: `claude_code.api`, `claude_code.tools`,
+`claude_code.config.model_registry`. Companion scripts: `scripts/streaming_client_smoke_test.py`,
 `scripts/batches_submit_and_poll.py`.
 
 **02 - Software engineering foundations.** The REST/JSON contract under the SDK, sync vs.
 async, transient vs. terminal error classes and retry with backoff, refactoring a prototype
 into a testable module, mocking the client with pytest, version control, and code review of
-common first-week Claude integration mistakes. Companion modules: `ccdvf.api.retry`,
-`ccdvf.api.errors`, `ccdvf.config`.
+common first-week Claude integration mistakes. Companion modules: `claude_code.api.retry`,
+`claude_code.api.errors`, `claude_code.config`.
 
 **03 - Claude application design.** Instruction interpretation across surfaces, content
 boundaries for untrusted input, JSON Schema for tools and structured output, deriving a tool
 `input_schema` from a pydantic model, session hygiene, and plugin management. Companion
-modules: `ccdvf.prompts`, `ccdvf.security.injection`, `ccdvf.tools`, `ccdvf.agents.loop`.
+modules: `claude_code.prompts`, `claude_code.security.injection`, `claude_code.tools`, `claude_code.agents.loop`.
 
 ## Homework
 
@@ -69,14 +69,14 @@ Tests run offline against mocks by default and cost nothing.
 lessons/        3 lesson notebooks
 homework/       3 homework notebooks; solutions/ holds the worked answers
 irl_examples/   one folder per lesson, each with runnable example projects and tests
-ccdvf/          small importable package the notebooks and examples use
+claude_code/          small importable package the notebooks and examples use
+                (Python import name; hyphens are not valid in imports, so Claude-Code becomes claude_code)
 scripts/        2 CLI scripts that lesson 01 invokes
 assets/         input data for homework 01
 flake.nix       optional Nix dev shell (Python 3.12, uv, ruff)
 pyproject.toml  dependencies, pinned by uv.lock
 ```
 
-The package is named `ccdvf` for historical reasons; the name has no other meaning here.
 
 ## Setup
 
@@ -97,11 +97,11 @@ project file, so there is no `.env` to create. Do not paste it into a notebook c
 
 ### Dry-run mode
 
-Set `CCDVF_DRY_RUN=1` to skip every live API call. No key and no spend are needed, and every
+Set `CLAUDE_CODE_DRY_RUN=1` to skip every live API call. No key and no spend are needed, and every
 notebook still runs top to bottom.
 
 ```bash
-CCDVF_DRY_RUN=1 uv run jupyter lab
+CLAUDE_CODE_DRY_RUN=1 uv run jupyter lab
 ```
 
 Without it, each notebook makes real calls. The cover cell of each lesson lists its cost:
@@ -114,7 +114,7 @@ a few cents per lesson on Haiku, plus about $0.12 if you also run the live batch
 uv run pytest
 
 # 2. Lessons and worked solutions - dry-run, no API key needed
-export CCDVF_DRY_RUN=1
+export CLAUDE_CODE_DRY_RUN=1
 for nb in lessons/*.ipynb homework/solutions/*.ipynb; do
   uv run jupyter nbconvert --to notebook --execute --output-dir /tmp/nbcheck "$nb"
 done

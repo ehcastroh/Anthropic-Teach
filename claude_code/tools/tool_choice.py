@@ -1,4 +1,4 @@
-"""ccdvf.tools.tool_choice: helpers that construct the API tool_choice parameter."""
+"""claude_code.tools.tool_choice: helpers that construct the API tool_choice parameter."""
 from __future__ import annotations
 
 

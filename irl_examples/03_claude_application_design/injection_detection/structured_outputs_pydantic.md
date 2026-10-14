@@ -304,7 +304,7 @@ from structured_outputs_pydantic import (
     VerdictValidationError,
     derive_input_schema,
 )
-from ccdvf.config.model_registry import get_model
+from claude_code.config.model_registry import get_model
 
 haiku_current = get_model("haiku_current")
 
@@ -517,7 +517,7 @@ pytest -k "test_cross_field_rule_passes_jsonschema_but_fails_model_validate" -v
 
 ```bash
 # Export your live API credential token to the active shell context
-export ANTHROPIC_API_KEY=$(python3 -c 'from ccdvf.security.secrets import load_api_key; print(load_api_key("ANTHROPIC_API_KEY"))')
+export ANTHROPIC_API_KEY=$(python3 -c 'from claude_code.security.secrets import load_api_key; print(load_api_key("ANTHROPIC_API_KEY"))')
 
 # Verify the environment key is loaded
 echo $ANTHROPIC_API_KEY # displays API Key

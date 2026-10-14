@@ -7,7 +7,7 @@ from pathlib import Path
 
 @dataclass(frozen=True, slots=True)
 class Settings:
-    """Runtime settings for ccdvf notebooks and scripts.
+    """Runtime settings for claude_code notebooks and scripts.
 
     Attributes:
         default_model: Registry key into model_registry.MODELS for default model.
@@ -35,7 +35,7 @@ _VALID_TTL_SECONDS = {300, 3600}
 def load(path: str | Path | None = None) -> Settings:
     """Load settings from a TOML file or return defaults when no path given.
 
-    Reads [ccdvf] table from the TOML file and merges recognized keys over
+    Reads [claude_code] table from the TOML file and merges recognized keys over
     the defaults. Unknown keys in the file are silently ignored (forward-compat).
 
     Preconditions:
@@ -59,7 +59,7 @@ def load(path: str | Path | None = None) -> Settings:
     with resolved.open("rb") as f:
         raw = tomllib.load(f)
 
-    table = raw.get("ccdvf", {})
+    table = raw.get("claude_code", {})
 
     kwargs: dict = {}
     for f_name in Settings.__dataclass_fields__:  # type: ignore[attr-defined]

@@ -1,4 +1,4 @@
-"""Smoke-test ccdvf.api.streaming.StreamingClient from the command line.
+"""Smoke-test claude_code.api.streaming.StreamingClient from the command line.
 
 Usage:
     python scripts/streaming_client_smoke_test.py --prompt "Hi" [--model haiku_current]
@@ -17,7 +17,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from ccdvf.config.model_registry import cost_for_call, get_model  # noqa: E402
+from claude_code.config.model_registry import cost_for_call, get_model  # noqa: E402
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -42,7 +42,7 @@ def main(argv: list[str] | None = None) -> int:
             "cost_usd": cost_for_call(args.model, input_tokens=0, output_tokens=0),
         }
     else:
-        from ccdvf.api.streaming import StreamingClient
+        from claude_code.api.streaming import StreamingClient
 
         chunks: list[str] = []
         with StreamingClient(model=args.model) as client:

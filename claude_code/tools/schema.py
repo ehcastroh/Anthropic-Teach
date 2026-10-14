@@ -1,4 +1,4 @@
-"""ccdvf.tools.schema: Tool dataclass and JSON Schema helpers."""
+"""claude_code.tools.schema: Tool dataclass and JSON Schema helpers."""
 from __future__ import annotations
 
 from collections.abc import Callable

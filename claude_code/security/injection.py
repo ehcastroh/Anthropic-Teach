@@ -1,4 +1,4 @@
-"""ccdvf.security.injection: helpers for marking untrusted content in messages."""
+"""claude_code.security.injection: helpers for marking untrusted content in messages."""
 from __future__ import annotations
 
 import re

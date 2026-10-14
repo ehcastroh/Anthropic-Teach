@@ -1,4 +1,4 @@
-"""ccdvf.api.streaming: streaming Messages API wrapper.
+"""claude_code.api.streaming: streaming Messages API wrapper.
 
 Verified against platform.claude.com/docs/en/docs/build-with-claude/streaming on 2026-09-02.
 """
@@ -8,10 +8,10 @@ from collections.abc import Iterator
 
 import anthropic
 
-from ccdvf.api.budget import BudgetTracker
-from ccdvf.config.model_registry import cost_for_call, get_model
-from ccdvf.config.settings import load
-from ccdvf.security.secrets import load_api_key
+from claude_code.api.budget import BudgetTracker
+from claude_code.config.model_registry import cost_for_call, get_model
+from claude_code.config.settings import load
+from claude_code.security.secrets import load_api_key
 
 
 class StreamingClient:
@@ -27,7 +27,7 @@ class StreamingClient:
 
     Preconditions:
         - ANTHROPIC_API_KEY must be set in env.
-        - model must be a key in ccdvf.config.model_registry.MODELS.
+        - model must be a key in claude_code.config.model_registry.MODELS.
     """
 
     def __init__(

@@ -1,4 +1,4 @@
-"""ccdvf.api.errors: custom exception types for the API layer."""
+"""claude_code.api.errors: custom exception types for the API layer."""
 from __future__ import annotations
 
 

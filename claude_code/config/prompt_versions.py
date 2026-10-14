@@ -1,6 +1,6 @@
-"""Prompt versioning: load prompts from versioned files in ccdvf/config/prompts/.
+"""Prompt versioning: load prompts from versioned files in claude_code/config/prompts/.
 
-Prompts live in ccdvf/config/prompts/{name}/vN.txt.
+Prompts live in claude_code/config/prompts/{name}/vN.txt.
 latest.txt is a plain-text copy of the current version (no symlinks - cross-platform).
 
 Treating prompts as versioned files means a prompt change is a git-diffable code change:
@@ -17,7 +17,7 @@ def get_prompt(name: str, version: str = "latest") -> str:
     """Load a versioned prompt by name.
 
     Preconditions:
-      - name is a non-empty string matching a subdirectory under ccdvf/config/prompts/.
+      - name is a non-empty string matching a subdirectory under claude_code/config/prompts/.
       - version is "latest" or a version tag like "v1", "v2".
 
     Postconditions:

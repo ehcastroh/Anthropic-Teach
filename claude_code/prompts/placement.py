@@ -1,4 +1,4 @@
-"""ccdvf.prompts.placement: helpers for placing trusted instructions vs untrusted content."""
+"""claude_code.prompts.placement: helpers for placing trusted instructions vs untrusted content."""
 from __future__ import annotations
 
 

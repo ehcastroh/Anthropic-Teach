@@ -1,4 +1,4 @@
-"""ccdvf.agents.loop: simple multi-turn agent loop with optional tool-result pruning."""
+"""claude_code.agents.loop: simple multi-turn agent loop with optional tool-result pruning."""
 from __future__ import annotations
 
 from dataclasses import dataclass, field

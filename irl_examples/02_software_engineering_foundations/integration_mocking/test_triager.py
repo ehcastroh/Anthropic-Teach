@@ -3,7 +3,7 @@ import pytest
 from unittest.mock import MagicMock, patch
 import anthropic
 from triager import CodeReviewTriager, BudgetExceededError
-from ccdvf.config.model_registry import get_model
+from claude_code.config.model_registry import get_model
 
 sonnet_current = get_model("sonnet_current")
 

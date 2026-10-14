@@ -20,7 +20,7 @@ from typing import Literal
 import anthropic
 from pydantic import BaseModel, Field, ValidationError
 
-from ccdvf.security.secrets import load_api_key
+from claude_code.security.secrets import load_api_key
 
 logger = logging.getLogger(__name__)
 

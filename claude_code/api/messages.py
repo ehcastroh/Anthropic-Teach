@@ -1,4 +1,4 @@
-"""ccdvf.api.messages: synchronous, non-streaming Messages API wrapper.
+"""claude_code.api.messages: synchronous, non-streaming Messages API wrapper.
 
 Verified against platform.claude.com/docs/en/api/messages on 2026-09-02.
 """
@@ -8,12 +8,12 @@ from dataclasses import dataclass
 
 import anthropic
 
-from ccdvf.api.budget import BudgetTracker
-from ccdvf.api.errors import BudgetExceededError, MalformedResponseError
-from ccdvf.api.retry import with_retry
-from ccdvf.config.model_registry import cost_for_call, get_model
-from ccdvf.config.settings import load
-from ccdvf.security.secrets import load_api_key
+from claude_code.api.budget import BudgetTracker
+from claude_code.api.errors import BudgetExceededError, MalformedResponseError
+from claude_code.api.retry import with_retry
+from claude_code.config.model_registry import cost_for_call, get_model
+from claude_code.config.settings import load
+from claude_code.security.secrets import load_api_key
 
 
 @dataclass(frozen=True, slots=True)
@@ -81,7 +81,7 @@ class MessagesClient:
 
     Preconditions:
         - ANTHROPIC_API_KEY must be set in env OR a client is passed.
-        - model must be a key in ccdvf.config.model_registry.MODELS.
+        - model must be a key in claude_code.config.model_registry.MODELS.
         - budget_usd > 0 when provided; None means uncapped.
     """
 

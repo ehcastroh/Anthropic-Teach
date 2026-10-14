@@ -1,4 +1,4 @@
-"""ccdvf.tools.approval: Decision-matrix helpers for tool approval patterns."""
+"""claude_code.tools.approval: Decision-matrix helpers for tool approval patterns."""
 from __future__ import annotations
 
 _SWEET_SPOT = 5

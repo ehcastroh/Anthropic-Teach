@@ -1,4 +1,4 @@
-"""ccdvf.api.batches: Message Batches API wrapper.
+"""claude_code.api.batches: Message Batches API wrapper.
 
 Verified against platform.claude.com/docs/en/api/creating-message-batches on 2026-09-02.
 """
@@ -10,8 +10,8 @@ from dataclasses import dataclass
 
 import anthropic
 
-from ccdvf.config.model_registry import MODELS, get_model
-from ccdvf.security.secrets import load_api_key
+from claude_code.config.model_registry import MODELS, get_model
+from claude_code.security.secrets import load_api_key
 
 
 @dataclass(frozen=True, slots=True)

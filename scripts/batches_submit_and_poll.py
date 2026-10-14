@@ -18,7 +18,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from ccdvf.api.batches import BatchRequest  # noqa: E402
+from claude_code.api.batches import BatchRequest  # noqa: E402
 
 
 def load_requests(path: Path) -> list[BatchRequest]:
@@ -56,7 +56,7 @@ def main(argv: list[str] | None = None) -> int:
             "batch_id": "dry-run-batch-id",
         }
     else:
-        from ccdvf.api.batches import BatchesClient
+        from claude_code.api.batches import BatchesClient
 
         client = BatchesClient()
         handle = client.submit(requests)

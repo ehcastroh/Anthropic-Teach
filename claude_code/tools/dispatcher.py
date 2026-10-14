@@ -1,7 +1,7 @@
-"""ccdvf.tools.dispatcher: registry and dispatch layer for tool_use blocks."""
+"""claude_code.tools.dispatcher: registry and dispatch layer for tool_use blocks."""
 from __future__ import annotations
 
-from ccdvf.tools.schema import Tool
+from claude_code.tools.schema import Tool
 
 
 class Dispatcher:
@@ -13,8 +13,8 @@ class Dispatcher:
         - Constructing tool_result blocks matched by tool_use_id.
 
     Does NOT own:
-        - Model call (see ccdvf.api.MessagesClient).
-        - Loop control (see ccdvf.agents.AgentLoop).
+        - Model call (see claude_code.api.MessagesClient).
+        - Loop control (see claude_code.agents.AgentLoop).
     """
 
     def __init__(self) -> None:

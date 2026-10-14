@@ -1,7 +1,7 @@
 """Locate the repository root, so notebooks can use root-relative paths.
 
 Every data path in this repo is written relative to the repository root
-(`fixtures/...`, `assets/...`, `ccdvf/config/prompts`). A Jupyter kernel's
+(`fixtures/...`, `assets/...`, `claude_code/config/prompts`). A Jupyter kernel's
 working directory is the *notebook's own* directory, so once the notebooks moved
 into `lessons/`, `homework/`, and `scenarios/`, every one of those paths began
 resolving against the wrong directory - `lessons/fixtures/...` does not exist.

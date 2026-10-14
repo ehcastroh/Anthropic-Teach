@@ -1,4 +1,4 @@
-"""ccdvf.api.retry: exponential backoff with jitter for Anthropic API calls."""
+"""claude_code.api.retry: exponential backoff with jitter for Anthropic API calls."""
 from __future__ import annotations
 
 import random
@@ -7,7 +7,7 @@ from collections.abc import Callable
 
 import anthropic
 
-from ccdvf.config.settings import load
+from claude_code.config.settings import load
 
 # Status codes that indicate a transient failure and should be retried.
 _RETRYABLE_STATUS = frozenset({429, 500, 502, 503, 504})

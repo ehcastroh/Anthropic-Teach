@@ -259,7 +259,7 @@ class TestOnline:
 
         import anthropic as _anthropic
 
-        from ccdvf.security.secrets import load_api_key
+        from claude_code.security.secrets import load_api_key
 
         live_client = _anthropic.Anthropic(api_key=load_api_key())
         decision = evaluate_deployment(

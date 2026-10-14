@@ -10,7 +10,7 @@ from structured_outputs_pydantic import (
     VerdictValidationError,
     derive_input_schema,
 )
-from ccdvf.config.model_registry import get_model
+from claude_code.config.model_registry import get_model
 
 haiku_current = get_model("haiku_current")
 

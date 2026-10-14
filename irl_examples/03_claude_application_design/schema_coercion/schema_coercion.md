@@ -173,13 +173,13 @@ cd irl_examples/03_claude_application_design/schema_coercion && pytest -v
 
 ### Online: pytest against the live API
 
-The API key is loaded from the environment by `ccdvf.security.secrets.load_api_key()`.
+The API key is loaded from the environment by `claude_code.security.secrets.load_api_key()`.
 It must be exported before running:
 
 ```bash
 # The key is exported globally from ~/Projects/dotfiles/secrets/secrets.sh via .zshrc
 # Verify it is available:
-python -c "from ccdvf.security.secrets import load_api_key; load_api_key(); print('key OK')"
+python -c "from claude_code.security.secrets import load_api_key; load_api_key(); print('key OK')"
 
 # Then run the live test variant:
 pytest irl_examples/03_claude_application_design/schema_coercion/ -v --online

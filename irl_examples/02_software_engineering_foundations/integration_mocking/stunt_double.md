@@ -435,7 +435,7 @@ pytest -k "test_generated_bank_matches_the_notebooks" -v
 
 ```bash
 # Export your live API credential token to the active shell context
-export ANTHROPIC_API_KEY=$(python3 -c 'from ccdvf.security.secrets import load_api_key; print(load_api_key("ANTHROPIC_API_KEY"))')
+export ANTHROPIC_API_KEY=$(python3 -c 'from claude_code.security.secrets import load_api_key; print(load_api_key("ANTHROPIC_API_KEY"))')
 
 # Verify Environment key is loaded
 echo $ANTHROPIC_API_KEY # displays API Key
